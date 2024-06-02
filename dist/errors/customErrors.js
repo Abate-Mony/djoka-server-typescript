@@ -27,4 +27,11 @@ export class UnauthorizedError extends Error {
         this.statusCode = StatusCodes.FORBIDDEN;
     }
 }
+export class InterserverError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "InterserverError";
+        this.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
+    }
+}
 //# sourceMappingURL=customErrors.js.map

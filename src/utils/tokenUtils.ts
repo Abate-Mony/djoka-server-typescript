@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 import { IUser } from "../interfaces/models/user.js";
 
 interface Payload {
-  // userId: typeof mongoose.Types.ObjectId;
-  userId: number;
+  userId: any;
   role: string;
 }
 export const createJWT = (payload: Payload): string => {

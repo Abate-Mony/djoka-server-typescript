@@ -2,8 +2,6 @@ import { StatusCodes } from "http-status-codes";
 import { UnauthenticatedError } from "../errors/customErrors.js";
 import userModel from "../models/userModel.js";
 import { sanitizeUser } from "../utils/tokenUtils.js";
-// import logisticModel from "../models/logisticModel.js";
-// get  the current user
 export const currentUser = async (req, res) => {
     const { userId } = req?.user;
     const user = await userModel.findOne({ userId });

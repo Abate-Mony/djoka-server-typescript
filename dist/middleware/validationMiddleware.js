@@ -1,7 +1,7 @@
-import { body, validationResult } from "express-validator";
+import { body, validationResult, query } from "express-validator";
 import { BadRequestError, } from "../errors/customErrors.js";
 // import Job from '../models/JobModel.js';
-import User from "../models/userModel.js";
+import { User } from "../models/baseUserModel.js";
 // import { Request, Response } from "express";
 const withValidationErrors = (validateValues) => {
     return [
@@ -26,30 +26,20 @@ const withValidationErrors = (validateValues) => {
         },
     ];
 };
-// export const validateJobInput = withValidationErrors([
-//   body("company").notEmpty().withMessage("company is required"),
-//   body("position").notEmpty().withMessage("position is required"),
-//   body("jobLocation").notEmpty().withMessage("job location is required"),
-//   body("jobStatus")
-//     .isIn(Object.values(JOB_STATUS))
-//     .withMessage("invalid status value"),
-//   body("jobType")
-//     .isIn(Object.values(JOB_TYPE))
-//     .withMessage("invalid type value"),
-// ]);
-// export const validateIdParam = withValidationErrors([
-//   param("id").custom(async (value, { req }) => {
-//     const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
-//     if (!isValidMongoId) throw new BadRequestError("invalid MongoDB id");
-//     const job = await Job.findById(value);
-//     if (!job) throw new NotFoundError(`no job with id ${value}`);
-//     const isAdmin = req.user.role === "admin";
-//     const isOwner = req.user.userId === job.createdBy.toString();
-//     if (!isAdmin && !isOwner)
-//       throw new UnauthorizedError("not authorized to access this route");
-//   }),
-// ]);
+// this function helps valid user input before the create an account
 export const validateRegisterInput = withValidationErrors([
+    query("role")
+        .notEmpty()
+        .withMessage("before creating an account please a user role is required ")
+        .custom(async (role, { req }) => {
+        if (role == "student") {
+            const isDateOfBirth = req.body?.DOB;
+            // check is user is student and does the user have a dateofbirth
+            if (!isDateOfBirth)
+                throw new BadRequestError("creating an account for a student requires a date of birh");
+        }
+        // another check and take place here
+    }),
     body("firstName").notEmpty().withMessage("firstName is required !"),
     body("secondName").notEmpty().withMessage("secondName is required !"),
     body("email")
@@ -58,6 +48,7 @@ export const validateRegisterInput = withValidationErrors([
         .isEmail()
         .withMessage("invalid email format")
         .custom(async (email) => {
+        // check if the user already existed with the email
         const isUserAlreadyExist = await User.findOne({ email });
         if (isUserAlreadyExist)
             throw new BadRequestError(`user already exist with email ${email}`);
