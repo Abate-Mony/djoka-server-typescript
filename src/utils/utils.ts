@@ -1,6 +1,2 @@
-// import { CustomError } from "../errors/customErrors.js";
-// import { errorType } from "../types/errorsType.js";
-
-// export const errCreationFunc = (props: errorType) => {
-//     return new CustomError(props);
-//   };
+export const isProduction = process.env.NODE_ENV == "production";
+console.log("this there environment : ", process.env.NODE_ENV);

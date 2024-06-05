@@ -13,6 +13,7 @@ import { authenticateUser } from "./middleware/authMiddleware.js";
 import userRouter from "./routes/userRouter.js";
 import taskRouter from "./routes/taskRouter.js";
 import { MONGODB_OPTIONS } from "./utils/constant.js";
+import { isProduction } from "./utils/utils.js";
 const app = express();
 app.use(express.json());
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -40,7 +41,7 @@ app.use("/api/v1/tasks", taskRouter);
 const PORT = process.env.PORT;
 const db = new Database({
   options: MONGODB_OPTIONS,
-  uri: process.env.MONGO_URL,
+  uri: !isProduction?process.env.MONGO_URL:process.env.MONGO_PROD_URL,
 });
 app.use("*", async (_req, res) => {
   res.status(404).send("routes not found 404");
