@@ -34,7 +34,7 @@ app.use("/api/v1/tasks", taskRouter);
 const PORT = process.env.PORT;
 const db = new Database({
     options: MONGODB_OPTIONS,
-    uri: process.env.MONGO_URL,
+    uri: process.env.MONGO_PROD_URL,
 });
 app.use("*", async (_req, res) => {
     res.status(404).send("routes not found 404");
