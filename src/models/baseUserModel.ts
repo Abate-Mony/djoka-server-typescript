@@ -39,8 +39,8 @@ const User = mongoose.model("User", UserSchema);
 
 // Student Schema
 const StudentSchema = new mongoose.Schema({
-  dateOfBirth: { type: Date, required: false },
-  address: { type: String, required: false },
+  dateOfBirth: { type: Date},
+  address: { type: String},
   parentId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   enrollmentId: { type: mongoose.Schema.Types.ObjectId, ref: "Enrollment" },
   disciplineId: { type: mongoose.Schema.Types.ObjectId, ref: "Discipline" },
