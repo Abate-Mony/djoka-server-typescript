@@ -1,4 +1,4 @@
-import { body, validationResult, query } from "express-validator";
+import { body, validationResult } from "express-validator";
 import { BadRequestError, } from "../errors/customErrors.js";
 // import Job from '../models/JobModel.js';
 import { User } from "../models/baseUserModel.js";
@@ -28,7 +28,7 @@ const withValidationErrors = (validateValues) => {
 };
 // this function helps valid user input before the create an account
 export const validateRegisterInput = withValidationErrors([
-    query("role")
+    body("role")
         .notEmpty()
         .withMessage("before creating an account please a user role is required ")
         .custom(async (role, { req }) => {
@@ -36,12 +36,12 @@ export const validateRegisterInput = withValidationErrors([
             const isDateOfBirth = req.body?.DOB;
             // check is user is student and does the user have a dateofbirth
             if (!isDateOfBirth)
-                throw new BadRequestError("creating an account for a student requires a date of birh");
+                throw new BadRequestError("creating an account for a student requires a date of birth");
         }
         // another check and take place here
     }),
     body("firstName").notEmpty().withMessage("firstName is required !"),
-    body("secondName").notEmpty().withMessage("secondName is required !"),
+    body("lastName").notEmpty().withMessage("lastName is required !"),
     body("email")
         .notEmpty()
         .withMessage("email is required")

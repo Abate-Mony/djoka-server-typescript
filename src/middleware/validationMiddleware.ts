@@ -47,7 +47,7 @@ export const validateRegisterInput = withValidationErrors([
         // check is user is student and does the user have a dateofbirth
         if (!isDateOfBirth)
           throw new BadRequestError(
-            "creating an account for a student requires a date of birh"
+            "creating an account for a student requires a date of birth"
           );
       }
       // another check and take place here
