@@ -38,7 +38,7 @@ const withValidationErrors = (validateValues) => {
 
 // this function helps valid user input before the create an account
 export const validateRegisterInput = withValidationErrors([
-  query("role")
+  body("role")
     .notEmpty()
     .withMessage("before creating an account please a user role is required ")
     .custom(async (role, { req }) => {
