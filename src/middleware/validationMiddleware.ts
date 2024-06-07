@@ -54,7 +54,7 @@ export const validateRegisterInput = withValidationErrors([
     }),
 
   body("firstName").notEmpty().withMessage("firstName is required !"),
-  body("secondName").notEmpty().withMessage("secondName is required !"),
+  body("lastName").notEmpty().withMessage("secondName is required !"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
