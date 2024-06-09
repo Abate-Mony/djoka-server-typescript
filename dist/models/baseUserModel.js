@@ -33,15 +33,15 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 // Student Schema
 const StudentSchema = new mongoose.Schema({
-    dateOfBirth: { type: Date, required: true },
-    address: { type: String, required: true },
+    dateOfBirth: { type: Date },
+    address: { type: String },
     parentId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     enrollmentId: { type: mongoose.Schema.Types.ObjectId, ref: "Enrollment" },
     disciplineId: { type: mongoose.Schema.Types.ObjectId, ref: "Discipline" },
     performanceId: { type: mongoose.Schema.Types.ObjectId, ref: "Performance" },
 });
 const Student = User.discriminator("student", StudentSchema);
-// Teacher Schema
+// Teacher Schema/
 const TeacherSchema = new mongoose.Schema({
     subject: { type: String, required: true },
     disciplineId: { type: mongoose.Schema.Types.ObjectId, ref: "Discipline" },

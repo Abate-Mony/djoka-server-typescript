@@ -33,7 +33,7 @@ export const validateRegisterInput = withValidationErrors([
         .withMessage("before creating an account please a user role is required ")
         .custom(async (role, { req }) => {
         if (role == "student") {
-            const isDateOfBirth = req.body?.DOB;
+            const isDateOfBirth = req.body?.DOB || null;
             // check is user is student and does the user have a dateofbirth
             if (!isDateOfBirth)
                 throw new BadRequestError("creating an account for a student requires a date of birth");

@@ -49,7 +49,7 @@ const StudentSchema = new mongoose.Schema({
 
 const Student = User.discriminator("student", StudentSchema);
 
-// Teacher Schema
+// Teacher Schema/
 const TeacherSchema = new mongoose.Schema({
   subject: { type: String, required: true },
   disciplineId: { type: mongoose.Schema.Types.ObjectId, ref: "Discipline" },

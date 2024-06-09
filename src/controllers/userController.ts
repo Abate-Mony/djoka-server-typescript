@@ -22,8 +22,12 @@ export const currentUser: MiddlewareFn = async (req, res) => {
 };
 // get all the user in the  database
 export const getAllUser: MiddlewareFn = async (req, res): Promise<void> => {
-  const { search } = req.query;
+  const { search, role } = req.query;
   const queryObject: any = {};
+
+  if (role && role !== "all") {
+    queryObject.role = role
+  }
   if (search) {
     const userSearch = [
       {
@@ -45,7 +49,7 @@ export const getAllUser: MiddlewareFn = async (req, res): Promise<void> => {
 // get a unique user in the database
 export const getStaticUser: MiddlewareFn = async (req, res) => {
   const userId = req.params.userId;
-  const user = await User.findOne({ _id:userId });
+  const user = await User.findOne({ _id: userId });
   if (!user)
     // throw an error if there is no user found in the database
     throw new UnauthenticatedError(`
