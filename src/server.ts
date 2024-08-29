@@ -14,6 +14,7 @@ import userRouter from "./routes/userRouter.js";
 import taskRouter from "./routes/taskRouter.js";
 import { MONGODB_OPTIONS } from "./utils/constant.js";
 import { isProduction } from "./utils/utils.js";
+import paymentTuitionRouter from "./routes/paymentTuitionRoutes.js";
 const app = express();
 app.use(express.json());
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -37,11 +38,13 @@ app.get("/hello-world", (_, res) => {
 app.use(`/api/v1/auth`, authRouter);
 app.use(`/api/v1/users`, authenticateUser, userRouter);
 app.use("/api/v1/tasks", taskRouter);
+app.use("/api/v1/payment-tuition", paymentTuitionRouter);
+// https://djokwa-client.vercel.app/dashboard/feesPayment
 
 const PORT = process.env.PORT;
 const db = new Database({
   options: MONGODB_OPTIONS,
-  uri:process.env.MONGO_PROD_URL,
+  uri: process.env.MONGO_URL,
 });
 app.use("*", async (_req, res) => {
   res.status(404).send("routes not found 404");
@@ -53,7 +56,7 @@ const startserver = async (): Promise<void> => {
     await app.listen(PORT, () => {
       console.log(
         `app is running on port ${PORT}/n
-          view app  at http://localhost:${PORT}/hello-word
+          view app  at http://localhost:${PORT}/hello-world
           `
       );
     });

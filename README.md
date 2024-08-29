@@ -3,6 +3,7 @@
 Djoka Server is a powerful and scalable backend server designed for a school management system. It leverages modern technologies such as MongoDB, TypeScript, Node.js, Express.js, and Express Validator to provide a robust API for managing school operations.
 
 ## Table of Contents
+
 - [Features](#features)
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
@@ -15,6 +16,7 @@ Djoka Server is a powerful and scalable backend server designed for a school man
 - [License](#license)
 
 ## Features
+
 - User authentication and authorization
 - CRUD operations for students, teachers, and courses
 - Schedule management
@@ -24,6 +26,7 @@ Djoka Server is a powerful and scalable backend server designed for a school man
 - Comprehensive error handling
 
 ## Technologies
+
 - **MongoDB**: NoSQL database for storing application data.
 - **TypeScript**: Strongly typed programming language that builds on JavaScript.
 - **Node.js**: JavaScript runtime for building server-side applications.
@@ -33,44 +36,51 @@ Djoka Server is a powerful and scalable backend server designed for a school man
 ## Getting Started
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (v14.x or later)
 - [MongoDB](https://www.mongodb.com/) (v4.x or later)
 - [npm](https://www.npmjs.com/) (v6.x or later) or [yarn](https://yarnpkg.com/) (v1.x or later)
 
 ### Installation
+
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/djoka-server.git
-    cd djoka-server
-    ```
+
+   ```bash
+   git clone https://github.com/yourusername/djoka-server.git
+   cd djoka-server
+   ```
 
 2. Install the dependencies:
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
 3. Set up environment variables:
-    - Create a `.env` file in the root directory and add the following:
-    ```env
-    PORT=3000
-    MONGO_URI=mongodb://localhost:27017/djoka
-    JWT_SECRET=your_jwt_secret
-    ```
+   - Create a `.env` file in the root directory and add the following:
+   ```env
+   PORT=3000
+   MONGO_URI=mongodb://localhost:27017/djoka
+   JWT_SECRET=your_jwt_secret
+   ```
 
 ### Running the Server
+
 1. Start the MongoDB server:
-    ```bash
-    mongod
-    ```
+
+   ```bash
+   mongod
+   ```
 
 2. Run the development server:
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
+
+   ```bash
+   npm run startDev
+   # or
+   yarn dev
+   ```
 
 3. The server will be running at `http://localhost:3000`.
 
@@ -87,13 +97,16 @@ Djoka Server is a powerful and scalable backend server designed for a school man
 - `server.ts`: Entry point for starting the server.
 
 ## API Endpoints
+
 Here are some of the main API endpoints provided by Djoka Server:
 
 ### Authentication
+
 - `POST /api/auth/register`: Register a new user
 - `POST /api/auth/login`: Login a user
 
 ### Students
+
 - `GET /api/students`: Get all students
 - `POST /api/students`: Create a new student
 - `GET /api/students/:id`: Get a student by ID
@@ -101,6 +114,7 @@ Here are some of the main API endpoints provided by Djoka Server:
 - `DELETE /api/students/:id`: Delete a student by ID
 
 ### Teachers
+
 - `GET /api/teachers`: Get all teachers
 - `POST /api/teachers`: Create a new teacher
 - `GET /api/teachers/:id`: Get a teacher by ID
@@ -108,6 +122,7 @@ Here are some of the main API endpoints provided by Djoka Server:
 - `DELETE /api/teachers/:id`: Delete a teacher by ID
 
 ### Courses
+
 - `GET /api/courses`: Get all courses
 - `POST /api/courses`: Create a new course
 - `GET /api/courses/:id`: Get a course by ID
@@ -117,6 +132,7 @@ Here are some of the main API endpoints provided by Djoka Server:
 _For a complete list of endpoints and detailed API documentation, please refer to the [API Documentation](./docs/API.md)_
 
 ## Contributing
+
 Contributions are welcome! Please read the [contribution guidelines](./CONTRIBUTING.md) first.
 
 1. Fork the repository
@@ -126,6 +142,7 @@ Contributions are welcome! Please read the [contribution guidelines](./CONTRIBUT
 5. Open a pull request
 
 ## License
+
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ---
@@ -133,4 +150,5 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 Happy coding! 😊
 
 # djoka-server
+
 # djoka-server-typescript
