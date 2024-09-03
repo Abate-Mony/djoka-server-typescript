@@ -1,4 +1,4 @@
-import { Request } from "express-validator/src/base.js";
+import { Request } from "express";
 import { MiddlewareFn } from "../interfaces/expresstype.js";
 
 export const paginationMiddleware: MiddlewareFn = (req, _res, next) => {
