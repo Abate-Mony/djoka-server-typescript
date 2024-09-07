@@ -7,6 +7,8 @@ const StudentSchema = new mongoose.Schema({
     address: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     email: { type: String, required: true },
+    currentFees: { type: Number, default: 0 },
+    matricule: { type: String, required: true },
     parentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Parent', required: true },
     enrollmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Enrollment', required: true },
     disciplineId: { type: mongoose.Schema.Types.ObjectId, ref: 'Discipline', required: true },

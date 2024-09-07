@@ -51,6 +51,7 @@ export const validateRegisterInput = withValidationErrors([
           );
       }
       // another check and take place here
+      body("matricule").notEmpty().withMessage("matricule is required !")
     }),
 
   body("firstName").notEmpty().withMessage("firstName is required !"),
