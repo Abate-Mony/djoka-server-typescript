@@ -39,6 +39,7 @@ export const validateRegisterInput = withValidationErrors([
                 throw new BadRequestError("creating an account for a student requires a date of birth");
         }
         // another check and take place here
+        body("matricule").notEmpty().withMessage("matricule is required !");
     }),
     body("firstName").notEmpty().withMessage("firstName is required !"),
     body("lastName").notEmpty().withMessage("lastName is required !"),

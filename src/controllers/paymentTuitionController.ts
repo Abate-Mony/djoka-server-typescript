@@ -1,13 +1,24 @@
 import { Request, Response } from "express";
 import { PaymentTuitionModel } from "../models/paymentTuitionModel.js";
+import { User } from "../models/baseUserModel.js";
 
 export const submitPaymentTuition = async (req: Request, res: Response) => {
+  // console.log("Request Body:", req.body); // Log the incoming request body
   try {
+    const { matricule, installment } = req.body;
+    // Update the student's current fees
+    await User.updateOne(
+      { matricule },
+      { $inc: { currentFees: installment } }
+    );
+    
+    // Create a new payment record
     const paymentData = new PaymentTuitionModel(req.body);
-    await paymentData.save();
+    const newPayment = await paymentData.save();
+
     res.status(201).json({
       message: "Payment tuition submitted successfully",
-      data: paymentData,
+      data: newPayment,
     });
   } catch (error) {
     res

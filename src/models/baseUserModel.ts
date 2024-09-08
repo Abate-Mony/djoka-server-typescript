@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema(
     lastName: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     email: { type: String, required: true },
+    currentFees: { type: Number, default: 0 },
     role: {
       type: String,
       required: true,
@@ -41,6 +42,8 @@ const User = mongoose.model("User", UserSchema);
 const StudentSchema = new mongoose.Schema({
   dateOfBirth: { type: Date},
   address: { type: String},
+  matricule: {type: String},
+  currentFees: { type: Number, default: 0 },
   parentId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   enrollmentId: { type: mongoose.Schema.Types.ObjectId, ref: "Enrollment" },
   disciplineId: { type: mongoose.Schema.Types.ObjectId, ref: "Discipline" },
