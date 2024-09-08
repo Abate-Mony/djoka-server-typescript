@@ -13,6 +13,7 @@ import { authenticateUser } from "./middleware/authMiddleware.js";
 import userRouter from "./routes/userRouter.js";
 import taskRouter from "./routes/taskRouter.js";
 import { MONGODB_OPTIONS } from "./utils/constant.js";
+import { isProduction } from "./utils/utils.js";
 import paymentTuitionRouter from "./routes/paymentTuitionRoutes.js";
 const app = express();
 app.use(express.json());
@@ -37,7 +38,7 @@ app.use("/api/v1/payment-tuition", paymentTuitionRouter);
 const PORT = process.env.PORT;
 const db = new Database({
     options: MONGODB_OPTIONS,
-    uri: process.env.MONGO_URL,
+    uri: isProduction ? process.env.MONGO_PROD_URL : process.env.MONGO_URL,
 });
 app.use("*", async (_req, res) => {
     res.status(404).send("routes not found 404");
